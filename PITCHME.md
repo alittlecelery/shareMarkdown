@@ -46,6 +46,7 @@ TypeScript是由微软开发，2012年10月份发布第一个版本，代码开�
 3. 对象的类型
 
       TypeScript中类型检查关注值的形状，**接口（interface）**作为一种规范，可用来定义形状和约束，描述对象的类型
+---
       - 普通属性：属性描述支持可选属性（？）和只读属性（readonly）
       - 字符串索引属性：当为接口添加任意属性时，此时接口的确定属性和可选属性的类型必须是任意属性类型的子属性
       - 数字索引属性：可以描述一个数组对象，具体见 *4.数组的类型*
@@ -80,7 +81,6 @@ TypeScript是由微软开发，2012年10月份发布第一个版本，代码开�
 ---
 
    ```
-    /* ----------------------------------------- */
     // 泛型接口
     interface Person<T> {
         [propName: string]: T
@@ -90,8 +90,7 @@ TypeScript是由微软开发，2012年10月份发布第一个版本，代码开�
     }
     let individual2: Person<number> = {
         age:20
-    }
-    
+    } 
   ```
 ---
 
@@ -121,17 +120,22 @@ TypeScript是由微软开发，2012年10月份发布第一个版本，代码开�
      - 如果函数没有输出时，使用关键字void
      - 如果永远没有返回，使用关键字never，如`function error(message:String): never { throw new Error(message) }`
      - 支持定义**泛型函数**
-    
+     
+---    
     2. 一等公民函数：当一个变量为函数类型，用（输入）=> (输出)表示函数类型定义，可以在**接口**中定义函数类型，描述函数的形状
+    
 ---
     3. 函数参数
      - 可选参数：当定义参数和传入参数不一致时，需明确指出可选参数，并且可选参数必须放在必须参数的后面
      - 默认参数：可以为参数指定初始值（ES6）
      - 剩余参数：同ES6，用...rest获取剩余参数
+     
+---
    4. 函数重载
       - 函数名相同，参数个数或类型不一样，和返回值类型无关。
       - 实现同一个功能的函数可以取相同的名字，还可以清晰的告诉调用者传入什么参数得到什么结果
 ---    
+
     ```
     function add(x:number,y:number): number{
        return x + y 
@@ -196,8 +200,36 @@ function getLength<T extends Length>(something:T): number {
 getLength(123);  //123没有length属性，编译报错   
 ```
 ---
+### 声明文件
 TypeScript的关键之一是type，我们定义类型，当我们要使用第三方库时，就需要使用它的声明文件，声明文件以`.d.ts`为后缀，用`declare`关键字定义，为了便于管理，所有的类型被发布到npm @types scope下，使用npm安装对应的声明模块即可，例如`npm install @types/react`
 
+---
+### 内置对象
 内置对象如`Error`,`Date`,`Document`,`NodeList`等可以直接作为TypeScript的类型定义使用，它们在[TypeScript核心库的定义文件](https://github.com/Microsoft/TypeScript/tree/master/src/lib)中定义好了
 
 ---
+### 第二部分：在react项目中使用TypeScript
+---
+
+1. npm全局安装typescript包，并在工程根目录运行tsc --init，自动产生tsconfig.json文件。初始化得到的tsconfig.json，增加"allowJs": true选项。
+```
+npm install -g typescript
+tsc --init
+```
+---
+2. 增加react声明文件
+```
+npm install --save-dev @types/react @types/react-dom
+```
+---
+3. 配置webpack，增加ts的loader，如awesome-typescript-loader。
+```
+npm install --save-dev awesome-typescript-loader
+```
+---
+4. 新项目可以参考TypeScript-React-Starter
+---
+### THANK YOU
+
+
+
