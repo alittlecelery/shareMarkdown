@@ -9,7 +9,7 @@ TypeScript是由微软开发，2012年10月份发布第一个版本，代码开�
 2. **类型检查**：TypeScript提供了静态语言强类型支持，增加了静态编译时的类型检查（也可以忽略），兼容动态语言弱类型的语法，因此TypeScript和JavaScript可以共存，最终被编译成纯粹的javascript。另外有了类型定义后，配合支持TypeScript的编辑器，写代码是一种很好的体验，函数的定义会自动提示出来，错误也会自动提示。
 
 ---
-   #### 我将从类型系统出发，介绍TypeScript的类型定义系统,下面开始学习TypeScript
+<p> 我将从类型系统出发，介绍TypeScript的类型定义系统,下面开始学习TypeScript</p>
 ---
 
 ### 第一部分：类型系统
@@ -26,31 +26,32 @@ TypeScript是由微软开发，2012年10月份发布第一个版本，代码开�
    - 延伸：
      - 类型推断：如果变量声明的时候有赋值，则会根据值的类型推断出一个具体的类型
      - 联合类型：多种类型之间可以组合  
+     
 ---
 
-    ```
-    let num: number = 8; //指出明确类型 
-    
-    let anything: any = 8; //等价于 let anything
-        anything = 'I want to be string'; //ok
-        anything.getName(); //编译ok
-        
-    let something = 'you define me'; //等价于 something: string
-        something = 8; //类型推断为string,赋值number时，编译报错
-            
-    let numOrStr: number | string; //联合类型
-        numOrStr = 7; 
-        numOrStr = 'I can be string too';  
-        
-    ```  
----
+```
+let num: number = 8; //指出明确类型 
 
- #### 对象的类型
+let anything: any = 8; //等价于 let anything
+    anything = 'I want to be string'; //ok
+    anything.getName(); //编译ok
+
+let something = 'you define me'; //等价于 something: string
+    something = 8; //类型推断为string,赋值number时，编译报错
+
+let numOrStr: number | string; //联合类型
+    numOrStr = 7; 
+    numOrStr = 'I can be string too';        
+```  
+
+---
+####对象的类型
       <p>TypeScript中类型检查关注值的形状，**接口（interface）**作为一种规范，可用来定义形状和约束，描述对象的类型</p>
       - 普通属性：属性描述支持可选属性（？）和只读属性（readonly）
       - 字符串索引属性：当为接口添加任意属性时，此时接口的确定属性和可选属性的类型必须是任意属性类型的子属性
       - 数字索引属性：可以描述一个数组对象，具体见 *4.数组的类型*
       - 函数类型属性：除了描述普通的属性，还可以描述函数类型,具体见 *5.函数的类型*     
+      
  ---
       - 延伸：接口的其他特性
           - 泛型接口：为接口传入一个或多个类型变量来提高接口的通用性，这样的接口称为**泛型接口**,使用的时候需要定义泛型的类型
@@ -95,8 +96,8 @@ TypeScript是由微软开发，2012年10月份发布第一个版本，代码开�
 ---
 
 #### 数组的类型
-
-    合并相同类型的对象叫数组，合并不同类型的对象叫元祖(Tuple),数组用`类型[]`或者 `Array<类型>`定义，**接口**也可以用来定义数组或元祖
+ 合并相同类型的对象叫数组，合并不同类型的对象叫元祖(Tuple),数组用`类型[]`或者 `Array<类型>`定义，**接口**也可以用来定义数组或元祖
+ 
 ---  
 
     ```
@@ -114,14 +115,14 @@ TypeScript是由微软开发，2012年10月份发布第一个版本，代码开�
     }
     ``` 
 --- 
-#### 函数的类型
 
-     对函数的输入和输出定义类型
-     - 如果函数没有输出时，使用关键字void
-     - 如果永远没有返回，使用关键字never，如`function error(message:String): never { throw new Error(message) }`
-     - 支持定义**泛型函数**
-     
+#### 函数的类型
+ 对函数的输入和输出定义类型
+ - 如果函数没有输出时，使用关键字void
+ - 如果永远没有返回，使用关键字never，如`function error(message:String): never { throw new Error(message) }`
+ - 支持定义**泛型函数**    
 ---    
+
    一等公民函数：当一个变量为函数类型，用（输入）=> (输出)表示函数类型定义，可以在**接口**中定义函数类型，描述函数的形状
     
 ---
@@ -151,7 +152,7 @@ TypeScript是由微软开发，2012年10月份发布第一个版本，代码开�
 ---    
 
 #### 枚举类型（Enum）
-    <p>枚举类型是一种名称数值集，默认情况下，枚举成员索引从0开始递增，它也支持手动赋值，枚举索引和枚举值具有双向映射关系</p>
+   <p>枚举类型是一种名称数值集，默认情况下，枚举成员索引从0开始递增，它也支持手动赋值，枚举索引和枚举值具有双向映射关系</p>
 ---    
     ```
     enum Directions {Up,Down,Left,Right};
@@ -161,8 +162,7 @@ TypeScript是由微软开发，2012年10月份发布第一个版本，代码开�
     ```
 ---    
 #### 类类型
-    <p>TypeScript除了实现ES6中类的所有功能之外，还添加了新用法,给类加上类类型类似于接口</p>
----
+   <p>TypeScript除了实现ES6中类的所有功能之外，还添加了新用法,给类加上类类型类似于接口</p>
     - 增加了public,private,protected，readonly关键字修饰的访问权限，成员都默认为 public，当成员被标记成private时，它就不能在声明它的类的外部访问，protected修饰符与private修饰符的行为很相似，但有一点不同，protected成员在派生类中仍然可以访问。readonly关键字将属性设置为只读的，只读属性必须在声明时或构造函数里被初始化。
     - 提供了抽象类（abstract）
     - 类可以实现接口（implements），使一个类去符合某种契约，接口用来描述类的公共部分，
@@ -170,7 +170,6 @@ TypeScript是由微软开发，2012年10月份发布第一个版本，代码开�
 ---        
 #### type创建别名
    <p>type可以为上述类型创建别名，为对象创建别名的作用类似接口,但不具备接口可以继承和实现的特点，所以不要用type代替接口</p>
----
     - 原始类型 `type a = string`
     - 函数类型 `type b = () => string`
     - 联合类型 `type Alias = a | b;`
@@ -201,11 +200,11 @@ getLength(123);  //123没有length属性，编译报错
 ```
 ---
 #### 声明文件
-TypeScript的关键之一是type，我们定义类型，当我们要使用第三方库时，就需要使用它的声明文件，声明文件以`.d.ts`为后缀，用`declare`关键字定义，为了便于管理，所有的类型被发布到npm @types scope下，使用npm安装对应的声明模块即可，例如`npm install @types/react`
+   TypeScript的关键之一是type，我们定义类型，当我们要使用第三方库时，就需要使用它的声明文件，声明文件以`.d.ts`为后缀，用`declare`关键字定义，为了便于管理，所有的类型被发布到npm @types scope下，使用npm安装对应的声明模块即可，例如`npm install @types/react`
 
 ---
 #### 内置对象
-内置对象如`Error`,`Date`,`Document`,`NodeList`等可以直接作为TypeScript的类型定义使用，它们在[TypeScript核心库的定义文件](https://github.com/Microsoft/TypeScript/tree/master/src/lib)中定义好了
+   内置对象如`Error`,`Date`,`Document`,`NodeList`等可以直接作为TypeScript的类型定义使用，它们在[TypeScript核心库的定义文件](https://github.com/Microsoft/TypeScript/tree/master/src/lib)中定义好了
 
 ---
 ### 第二部分：在react项目中使用TypeScript
