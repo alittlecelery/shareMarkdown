@@ -46,32 +46,31 @@ let numOrStr: number | string; //联合类型
 
 ---
 #### 对象的类型
-TypeScript中类型检查关注值的形状，**接口（interface）**作为一种规范，可用来定义形状和约束，描述对象的类型
+类型检查关注值的形状，**接口（interface）**作为一种规范，可用来定义形状和约束，描述对象的类型
   - 普通属性：属性描述支持可选属性（？）和只读属性（readonly）
   - 字符串索引属性：当为接口添加任意属性时，此时接口的确定属性和可选属性的类型必须是任意属性类型的子属性
   - 数字索引属性：可以描述一个数组对象，具体见 *4.数组的类型*
-  - 函数类型属性：除了描述普通的属性，还可以描述函数类型,具体见 *5.函数的类型*        
+  - 函数类型属性：除了描述普通的属性，还可以描述函数类型,具体见 *5.函数的类型*   
  ---
- 
-  - 延伸：接口的其他特性
-      - 泛型接口：为接口传入一个或多个类型变量来提高接口的通用性，这样的接口称为**泛型接口**,使用的时候需要定义泛型的类型
-      - 接口继承接口：接口可以继承接口，相互扩展
-      - 接口继承类：不同于Java等语言中接口的作用，TypeScript里接口可以继承类，当接口继承一个类类型时，它会继承类的所有成员但不包括其实现，当接口继承了一个具有private或protected的类时，这个接口就只能被这个类或它的子类去实现，原理见 *7.类类型*          
+#### 接口的其他特性
+  - 泛型接口：为接口传入一个或多个类型变量来提高接口的通用性，这样的接口称为**泛型接口**,使用的时候需要定义泛型的类型
+  - 接口继承接口：接口可以继承接口，相互扩展
+  - 接口继承类：不同于Java等语言中接口的作用，TypeScript里接口可以继承类，当接口继承一个类类型时，它会继承类的所有成员但不包括其实现，当接口继承了一个具有private或protected的类时，这个接口就只能被这个类或它的子类去实现，原理见 *7.类类型*          
 
 ---  
 
     ```
     //首字母大写
     interface Person {  
-        name: string;
-        age？: number; 
-        [propNamr: string]: string
+       name: string;
+       age？: number; 
+       [propNamr: string]: string
     }
     //age的类型number不是string的子类，编译无法通过
     let individual: Person = {
-        name: 'Alice',
-        age: 20,  
-        gender:'female'
+       name: 'Alice',
+       age: 20,  
+       gender:'female'
     }     
     //接口约束数组
     interface stringArray {
@@ -84,13 +83,13 @@ TypeScript中类型检查关注值的形状，**接口（interface）**作为一
    ```
     // 泛型接口
     interface Person<T> {
-        [propName: string]: T
+       [propName: string]: T
     }
     let individual: Person<string> = {
-        name:'Tom'
+       name:'Tom'
     }
     let individual2: Person<number> = {
-        age:20
+       age:20
     } 
   ```
 ---
