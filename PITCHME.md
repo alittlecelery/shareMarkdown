@@ -50,9 +50,9 @@ TypeScript中类型检查关注值的形状，**接口（interface）**作为一
   - 普通属性：属性描述支持可选属性（？）和只读属性（readonly）
   - 字符串索引属性：当为接口添加任意属性时，此时接口的确定属性和可选属性的类型必须是任意属性类型的子属性
   - 数字索引属性：可以描述一个数组对象，具体见 *4.数组的类型*
-  - 函数类型属性：除了描述普通的属性，还可以描述函数类型,具体见 *5.函数的类型*     
-      
+  - 函数类型属性：除了描述普通的属性，还可以描述函数类型,具体见 *5.函数的类型*        
  ---
+ 
   - 延伸：接口的其他特性
       - 泛型接口：为接口传入一个或多个类型变量来提高接口的通用性，这样的接口称为**泛型接口**,使用的时候需要定义泛型的类型
       - 接口继承接口：接口可以继承接口，相互扩展
@@ -61,18 +61,18 @@ TypeScript中类型检查关注值的形状，**接口（interface）**作为一
 ---  
 
     ```
-    interface Person {  //首字母大写
+    //首字母大写
+    interface Person {  
         name: string;
         age？: number; 
         [propNamr: string]: string
     }
-    
+    //age的类型number不是string的子类，编译无法通过
     let individual: Person = {
         name: 'Alice',
         age: 20,  
         gender:'female'
-    }     //age的类型number不是string的子类，编译无法通过
-    
+    }     
     //接口约束数组
     interface stringArray {
       readonly [index: number]: string;
