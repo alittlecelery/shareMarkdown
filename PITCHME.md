@@ -77,6 +77,7 @@ let numOrStr: number | string; //联合类型
     interface stringArray {
       readonly [index: number]: string;
     } 
+    
     ```
 ---
 
@@ -112,6 +113,7 @@ let numOrStr: number | string; //联合类型
       0: number;
       1: string;
     }
+    
     ``` 
 --- 
 
@@ -148,6 +150,7 @@ let numOrStr: number | string; //联合类型
        (x:number,y:number): number 
     }
     let myAdd: AddFunc = add;
+    
     ```
 ---    
 
