@@ -123,7 +123,8 @@ TypeScript中类型检查关注值的形状，**接口（interface）**作为一
  - 支持定义**泛型函数**    
 ---    
 
-一等公民函数：当一个变量为函数类型，用（输入）=> (输出)表示函数类型定义，可以在**接口**中定义函数类型，描述函数的形状
+一等公民函数
+ — 当一个变量为函数类型，用（输入）=> (输出)表示函数类型定义，可以在**接口**中定义函数类型，描述函数的形状
 
 ---
 函数参数
@@ -165,20 +166,20 @@ TypeScript中类型检查关注值的形状，**接口（interface）**作为一
 
 #### 类类型
 TypeScript除了实现ES6中类的所有功能之外，还添加了新用法,给类加上类类型类似于接口
-    - 增加了public,private,protected，readonly关键字修饰的访问权限，成员都默认为 public，当成员被标记成private时，它就不能在声明它的类的外部访问，protected修饰符与private修饰符的行为很相似，但有一点不同，protected成员在派生类中仍然可以访问。readonly关键字将属性设置为只读的，只读属性必须在声明时或构造函数里被初始化。
-    - 提供了抽象类（abstract）
-    - 类可以实现接口（implements），使一个类去符合某种契约，接口用来描述类的公共部分，
-    - 类似泛型接口，也可以定义泛型类  
+ - 增加了public,private,protected，readonly关键字修饰的访问权限，成员都默认为 public，当成员被标记成private时，它就不能在声明它的类的外部访问，protected修饰符与private修饰符的行为很相似，但有一点不同，protected成员在派生类中仍然可以访问。readonly关键字将属性设置为只读的，只读属性必须在声明时或构造函数里被初始化。
+ - 提供了抽象类（abstract）
+ - 类可以实现接口（implements），使一个类去符合某种契约，接口用来描述类的公共部分，
+ - 类似泛型接口，也可以定义泛型类  
     
 ---   
 
 #### type创建别名
 type可以为上述类型创建别名，为对象创建别名的作用类似接口,但不具备接口可以继承和实现的特点，所以不要用type代替接口
-    - 原始类型 `type a = string`
-    - 函数类型 `type b = () => string`
-    - 联合类型 `type Alias = a | b;`
-    - 字符字面量类型 `type Easing = "ease-in" | "ease-out" | "ease-in-out"; `
-    - 泛型 `type Container<T> = { value: T };`
+ - 原始类型 `type a = string`
+ - 函数类型 `type b = () => string`
+ - 联合类型 `type Alias = a | b;`
+ - 字符字面量类型 `type Easing = "ease-in" | "ease-out" | "ease-in-out"; `
+ - 泛型 `type Container<T> = { value: T };`
     
 --- 
 
